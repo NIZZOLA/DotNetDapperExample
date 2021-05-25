@@ -8,28 +8,32 @@ namespace DotNetDapperExample
         static void Main(string[] args)
         {
             var repo = new RepositoryDapper();
-/*
-            
-            var userList = repo.GetAll();
+
+            /*  CONSULTANDO UMA ENTIDADE SIMPLES  */
+            var userList = repo.GetFuncionarioAll();
 
             foreach (var item in userList)
             {
                 Console.WriteLine(item.Nome);
             }
 
-            var userCargo = repo.GetAllCargo();
+
+            /*   CONSULTANDO UMA ENTIDADE SIMPLES + UM RELACIONAMENTO 1 X 1   */
+            var userCargo = repo.GetFuncionarioAllCargo();
             foreach (var item in userCargo)
             {
                 Console.WriteLine(item.Nome + " - " + item.Cargo.NomeDoCargo);
             }
 
+
+            /* CONSULTANDO UMA ENTIDADE SIMPLES + ALGUNS RELACIONAMENTOS 1 X 1   E AUTO RELAÇÃO */
             var userCompleto = repo.GetFuncionarioAllRelated();
             foreach (var item in userCompleto)
             {
                 Console.WriteLine(item.Nome + " - " + item.Cargo.NomeDoCargo);
             }
-*/
 
+            /*  CONSULTANDO UMA ENTIDADE COM RELAÇÃO DE 1 PARA MUITOS   */
             var equipes = repo.GetEquipeAll();
             foreach (var equipe in equipes)
             {
@@ -42,7 +46,6 @@ namespace DotNetDapperExample
             }
 
 
-            Console.WriteLine("Hello World!");
         }
     }
 }
