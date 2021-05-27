@@ -39,5 +39,11 @@ namespace DotNetDapperExample
 													FROM EQUIPE EQ 
 													INNER JOIN FUNCIONARIO FUN ON FUN.TIMEID = EQ.ID ";
 
+		public static string GetMultiple = @"select * from cargo
+											 select * from equipe
+											 select * from funcionario";
+
+		public static string SomaIntegrantesDaEquipe = @"select dbo.F_ContaEquipe(@equipeId)";
+
     }
 }

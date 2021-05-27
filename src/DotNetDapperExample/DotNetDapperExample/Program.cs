@@ -11,7 +11,7 @@ namespace DotNetDapperExample
 
             /*  CONSULTANDO UMA ENTIDADE SIMPLES  */
             var userList = repo.GetFuncionarioAll();
-
+            Console.WriteLine("Consulta 1");
             foreach (var item in userList)
             {
                 Console.WriteLine(item.Nome);
@@ -19,6 +19,7 @@ namespace DotNetDapperExample
 
 
             /*   CONSULTANDO UMA ENTIDADE SIMPLES + UM RELACIONAMENTO 1 X 1   */
+            Console.WriteLine("Consulta 2");
             var userCargo = repo.GetFuncionarioAllCargo();
             foreach (var item in userCargo)
             {
@@ -27,13 +28,15 @@ namespace DotNetDapperExample
 
 
             /* CONSULTANDO UMA ENTIDADE SIMPLES + ALGUNS RELACIONAMENTOS 1 X 1   E AUTO RELAÇÃO */
+            Console.WriteLine("Consulta 3");
             var userCompleto = repo.GetFuncionarioAllRelated();
             foreach (var item in userCompleto)
             {
-                Console.WriteLine(item.Nome + " - " + item.Cargo.NomeDoCargo);
+                Console.WriteLine(item.Nome + " - Cargo: " + item.Cargo.NomeDoCargo + " - Time: " + item.Time.Nome + " Superior: " + item.SuperiorImediato?.Nome);
             }
 
             /*  CONSULTANDO UMA ENTIDADE COM RELAÇÃO DE 1 PARA MUITOS   */
+            Console.WriteLine("Consulta 4");
             var equipes = repo.GetEquipeAll();
             foreach (var equipe in equipes)
             {
@@ -45,6 +48,11 @@ namespace DotNetDapperExample
                 }
             }
 
+            // executa múltiplas consultas de entidades
+            repo.GetMultiple();
+            
+            // execução de funções
+            Console.WriteLine( "A equipe possui:" + repo.ContaMembrosDaEquipe(1) );
 
         }
     }

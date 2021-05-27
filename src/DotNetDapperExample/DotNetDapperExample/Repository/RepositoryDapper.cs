@@ -84,5 +84,29 @@ namespace DotNetDapperExample
                 return listEquipes.Values;
             }
         }
+
+        public void GetMultiple()
+        {
+            using (IDbConnection db = new SqlConnection(strConn))
+            {
+                using (var multi = db.QueryMultiple(QueryConstants.GetMultiple ))
+                {
+                    var listFun = multi.Read<FuncionarioModel>().ToList();
+                    var listCargo = multi.Read<CargoModel>().ToList();
+                    var equipe = multi.Read<EquipeModel>().ToList();
+                }
+                
+            }
+        }
+
+        public int ContaMembrosDaEquipe(int equipeId)
+        {
+            using(IDbConnection db = new SqlConnection(strConn))
+            {
+                var result = db.QuerySingle<int>(QueryConstants.SomaIntegrantesDaEquipe, new { @equipeId = equipeId });
+                return result;
+            }
+        }
+
     }
 }
